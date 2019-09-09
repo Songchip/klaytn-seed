@@ -30,7 +30,7 @@ contract SampleCrowdsaleToken is ERC20Mintable, ERC20Detailed {
  * After adding multiple features it's good practice to run integration tests
  * to ensure that subcontracts works together as intended.
  */
-contract SampleCrowdsale is CappedCrowdsale, RefundableCrowdsale, MintedCrowdsale {
+contract FLUICrowdsale is CappedCrowdsale, RefundableCrowdsale, MintedCrowdsale {
 	constructor(
 		uint256 openingTime,
 		uint256 closingTime,
