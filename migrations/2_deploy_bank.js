@@ -1,11 +1,11 @@
 const fs = require('fs');
 const AzureUploader = require('@flui/klaytn-uploader').AzureUploader;
-const SCVCard = artifacts.require('SCVCard');
+const FLUBank = artifacts.require('FLUBank');
 
 module.exports = function(deployer) {
-	deployer.deploy(SCVCard).then(() => {
+	deployer.deploy(FLUBank).then(() => {
 		const data = JSON.stringify({
-			contractAddress: SCVCard.address
+			contractAddress: FLUBank.address
 		});
 
 		if (!fs.existsSync('./artifacts')) {
@@ -14,17 +14,18 @@ module.exports = function(deployer) {
 		}
 
 		fs.writeFileSync('./artifacts/address.json', data);
-		console.log(`\n    Create file of contract address to json: ${SCVCard.address}`);
+		console.log(`\n    Create file of contract address to json: ${FLUBank.address}`);
 
-		const abi = JSON.stringify(SCVCard._json.abi);
+		const abi = JSON.stringify(FLUBank._json.abi);
 		fs.writeFileSync('./artifacts/abi.json', abi);
-		console.log(`\n    Create file of abi file to json: ${SCVCard.address}`);
+		console.log(`\n    Create file of abi file to json: ${FLUBank.address}`);
 
 		const accountName = process.env.AZURE_STORAGE_ACCOUNT_NAME;
 		const accessKey = process.env.AZURE_STORAGE_ACCOUNT_ACCESS_KEY;
 		const uploader = new AzureUploader(accountName, accessKey);
 
 		const containerName = process.env.AZURE_STORAGE_CONTRACT_CONTAINER_NAME;
-		uploader.uploadArtifacts(SCVCard._json.contractName, 'artifacts', containerName);
+		uploader.uploadArtifacts(FLUBank._json.contractName, 'artifacts', containerName);
+
 	});
 };
