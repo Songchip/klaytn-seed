@@ -22,7 +22,7 @@ contract FLUIBank is Ownable {
         balance[msg.sender] += _amount;
     }
 
-    function withdraw(uint256 _amount) external bankOpened {
+    function withdraw(uint256 _amount) external payable bankOpened {
         require(balance[msg.sender] >= _amount);
 
         balance[msg.sender] -= _amount;
