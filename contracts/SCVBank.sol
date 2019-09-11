@@ -7,10 +7,11 @@ contract SCVBank is Ownable {
     bool private bankOpen = true;
 
     modifier bankOpened() {
-
+        _;
     }
 
     function setBankState(bool _bankOpen) external onlyOwner {
+
 
     }
 
@@ -27,5 +28,7 @@ contract SCVBank is Ownable {
     }
 
     function getBalance(address _user) external view bankOpened returns (uint256) {
+
+    }
 
 }
